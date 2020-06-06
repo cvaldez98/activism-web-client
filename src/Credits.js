@@ -15,25 +15,25 @@ function Credits() {
         <div className="site-card-wrapper">
         <Row gutter={16}>
           <Col span={8}>
-            <Card title="Card title" bordered={false}>
-              Card content
+            <Card title="Alan Ton" bordered={false}>
+                Links
             </Card>
           </Col>
           <Col span={8}>
-            <Card title="Card title" bordered={false}>
-              Card content
+            <Card title="Abdallah Abuhashem" bordered={false}>
+                Links
             </Card>
           </Col>
           <Col span={8}>
-            <Card title="Card title" bordered={false}>
-              Card content
+            <Card title="Carlos Valdez" bordered={false}>
+                Links
             </Card>
           </Col>
         </Row>
         <Row gutter={16}>
           <Col span={8}>
-            <Card title="Card title" bordered={false}>
-              Card content
+            <Card title="Uma Krishnan" bordered={false}>
+                Links
             </Card>
           </Col>
           <Col span={8}>
