@@ -68,7 +68,7 @@ ol
 			list-style-position: outside;
 			counter-reset: counter1;
 			margin: 25px 0px;
-			max-width: 800px;
+			max-width: 1000px;
 			text-align: justify;
 		}
 		ol li{
