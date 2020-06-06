@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+source-code/client/node_modules
 /.pnp
 .pnp.js
 
@@ -26,4 +26,4 @@ source-code/credentials.json
 source-code/node_modules
 source-code/token.json
 # next js 
-/.next
+source-code/client/.next
