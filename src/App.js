@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'antd/dist/antd.css';
+import './styles.css';
 import { Layout, Menu, Breadcrumb, Button } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 
