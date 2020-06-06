@@ -27,3 +27,6 @@ source-code/node_modules
 source-code/token.json
 # next js 
 source-code/client/.next
+
+/node_modules
+/.next
