@@ -25,3 +25,5 @@ yarn-error.log*
 source-code/credentials.json
 source-code/node_modules
 source-code/token.json
+# next js 
+/.next
