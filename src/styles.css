@@ -1,5 +1,5 @@
 body {
-    font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
+    font-family: 'Work Sans', 'arial black', arial, sans-serif,
       'Arial', sans-serif;
     padding: 20px 20px 60px;
     max-width: auto;
@@ -7,12 +7,40 @@ body {
     /* background-attachment: fixed; */
 
     transition: background-color .5s ease;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background: linear-gradient(-45deg, #003261, pink, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
-  
+    line-height: 150%;
   
 }
+
+b
+{
+  font-weight: 800;
+  color: pink;
+}
+
+p
+{
+  font-size: 16px;
+  text-indent: 30px;
+  text-align: justify;
+  color:white
+}
+
+span
+		{
+			display: inline-block;
+			width: 75px;
+			border-bottom: 2px solid #FFF;
+		}
+
+#container
+		{
+			width: 100%;
+			margin: 0 auto;
+			text-align: center;
+		}
 
 @keyframes gradient {
   0% {
@@ -30,3 +58,35 @@ body {
   padding: 20px 20px 60px;
   text-align: left;
 }
+
+ol
+		{
+			font-size: 25px;
+			font-weight: 800;
+			color: pink;
+			list-style: none;
+			list-style-position: outside;
+			counter-reset: counter1;
+			margin: 25px 0px;
+			max-width: 800px;
+			text-align: justify;
+		}
+		ol li{
+			counter-increment: counter1;
+			margin-left: 25px;
+			margin-top: 25px;
+			font-weight: 400;
+    }
+    ol li::before
+		{
+			content: counter(counter1)"";
+			font-weight: 800;
+			color: #003261;
+			background-color: pink;
+			text-align: center;
+			border-radius: 1em;
+			display: inline-block;
+			height: 25px;
+			width: 25px;
+			margin-right: 50px;
+		}
