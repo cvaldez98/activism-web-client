@@ -4,7 +4,7 @@ import './styles.css';
 function SampleEmail() {
     return (
         <main>
-          <b>An email script for your local police department and local representatives</b>
+          <b>An email script for your local police department and local representatives. This is what an example would look like.</b>
 
           <p>
             Dear Mayor <span> </span> and Councilpeople <span> </span>, <span> </span>, and <span> </span>,</p>
