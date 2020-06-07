@@ -28,13 +28,6 @@ p
   color:white
 }
 
-span
-		{
-			display: inline-block;
-			width: 75px;
-			border-bottom: 2px solid #FFF;
-		}
-
 #container
 		{
 			width: 100%;
@@ -91,14 +84,13 @@ ol
 			margin-right: 50px;
 		}
 
-		body {
-			margin: 0;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-		  }
-		  
-		  code {
-			font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-			  monospace;
-		  }
-		  
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
