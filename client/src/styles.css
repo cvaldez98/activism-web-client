@@ -52,46 +52,35 @@ p
   text-align: left;
 }
 
-ol
-		{
-			font-size: 25px;
-			font-weight: 800;
-			color: pink;
-			list-style: none;
-			list-style-position: outside;
-			counter-reset: counter1;
-			margin: 25px 0px;
-			max-width: 1000px;
-			text-align: justify;
-		}
-		ol li{
-			counter-increment: counter1;
-			margin-left: 25px;
-			margin-top: 25px;
-			font-weight: 400;
-    }
-    ol li::before
-		{
-			content: counter(counter1)"";
-			font-weight: 800;
-			color: #003261;
-			background-color: pink;
-			text-align: center;
-			border-radius: 1em;
-			display: inline-block;
-			height: 25px;
-			width: 25px;
-			margin-right: 50px;
-		}
+ol {
+	font-size: 24px;
+	font-weight: 800;
+	color: pink;
+	list-style: none;
+	list-style-position: outside;
+	counter-reset: counter1;
+}
+ol li {
+	counter-increment: counter1;
+	margin-top: 16px;
+	font-weight: 400;
+}
 
-		body {
-			margin: 0;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-		  }
-		  
-		  code {
-			font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-			  monospace;
-		  }
-		  
+ol li::before {
+	content: counter(counter1)"";
+	font-weight: 600;
+	color: #003261;
+	background-color: pink;
+	text-align: center;
+	border-radius: 1em;
+	display: inline-block;
+	height: 36px;
+	width: 36px;
+	margin-right: 25px;
+}
+
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

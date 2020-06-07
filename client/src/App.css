@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  min-width: 640px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.action-list {
+  display: flex;
+  flex: 3;
+  min-width: 600px;
+}
+
+.example-email {
+  display: flex;
+  flex: 2;
+  min-width: 600px;
+  padding: 16px;
+  background-color: #001529;
+}
