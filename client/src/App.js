@@ -1,7 +1,7 @@
 import React from 'react';
 import './Credits'
 import './SampleEmail'
-import Home from './pages/App';
+import Home from './pages/Home';
 import Start from './pages/Start';
 
 import {

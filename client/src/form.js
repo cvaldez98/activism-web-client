@@ -6,6 +6,7 @@ import { PageHeader } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography
 
+
 function Form() {
     return (
         <Layout style={{ opacity:'0.8'}}>

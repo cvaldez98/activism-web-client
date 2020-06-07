@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaceHolder from '../src/PlaceHolder'
+import PlaceHolder from '../../../client/src/PlaceHolder'
 
 function SampleEmail() {
     return (
