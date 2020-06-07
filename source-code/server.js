@@ -13,24 +13,23 @@ const SCOPES = ['https://mail.google.com/',
 'https://www.googleapis.com/auth/gmail.compose',
 'https://www.googleapis.com/auth/gmail.send',
 'https://www.googleapis.com/auth/userinfo.email'];
-const CLIENT_ID = 'ENTER_CLIENT_ID';
-const SECRET_ID = 'ENTER_SECRET_ID';
+
 const TEST_TO = 'aabuhash@stanford.edu';
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   SECRET_ID,
-  'http://localhost:5000/oauth2callback');
+  'http://localhost:3000/start');
 
-console.log(oAuth2Client);
+// console.log(oAuth2Client);
 
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // create a GET route
-app.get('/express_backend', (req, res) => {
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});
+// app.get('/express_backend', (req, res) => {
+//   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+// });
 
 app.get('/oauth2callback', (req, res) => {
   let code = req.query.code;
@@ -38,7 +37,7 @@ app.get('/oauth2callback', (req, res) => {
 
   oAuth2Client.getToken(code, (err, token) => {
     if (err) return console.error('Error retrieving access token', err);
-    oAuth2Client.setCredentials(token);
+    // oAuth2Client.setCredentials(token);
     console.log(token);
     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token.access_token}`).then((user) => {
       console.log(user.data);
@@ -50,7 +49,7 @@ app.get('/oauth2callback', (req, res) => {
       const subject = '🤘 Hello Abdallah and World 🤘';
       const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;
       const messageParts = [
-        'From: Abdallah AbuHashem <aaabuhashem1997@gmail.com>',
+        `From: Abdallah AbuHashem <${user.data.email}>`,
         'To: Abdallah AbuHashem <aabuhash@stanford.edu>',
         'Content-Type: text/html; charset=utf-8',
         'MIME-Version: 1.0',
@@ -70,7 +69,7 @@ app.get('/oauth2callback', (req, res) => {
 
       axios({
         method: 'post',
-        url: 'https://www.googleapis.com/gmail/v1/users/me/messages/send',
+        url: `https://www.googleapis.com/gmail/v1/users/${user.data.id}/messages/send`,
         headers: {
           'Authorization': 'Bearer ' + token.access_token,
           'Content-Type': 'application/json'
@@ -92,12 +91,9 @@ app.get('/oauth2callback', (req, res) => {
 });
 
 app.get('/get_auth_link', (req, res) => {
-  fs.readFile('credentials.json', (err, content) => {
-    if (err) return console.log('Error loading client secret file:', err);
-    // Authorize a client with credentials, then call the Gmail API.
-    let authUrl = getNewToken();
-    res.send({ authUrl: authUrl });
-  });
+  // Authorize a client with credentials, then call the Gmail API.
+  let authUrl = getNewToken();
+  res.send({ authUrl: authUrl });
 });
 
 // /**
