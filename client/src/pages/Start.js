@@ -10,18 +10,6 @@ const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography
 
 // Example POST method implementation:
-async function postData(url = '', data = {}) {
-  // Default options are marked with *
-  const response = await fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    headers: {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  });
-  return response.json(); // parses JSON response into native JavaScript objects
-}
 
 function App(props) {
   //EXAMPLE REQUEST
@@ -34,7 +22,7 @@ function App(props) {
   const code = params.code;
   const scopes = params.scope;
   return (
-    <Form></Form>
+    <Form code={{ code }} scopes={{ scopes }}></Form>
   );
 }
 
