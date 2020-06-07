@@ -1,19 +1,17 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
-const fs = require('fs');
-const readline = require('readline');
 const {google} = require('googleapis');
 const axios = require("axios");
-const Base64 = require('js-base64').Base64;
-const MIMEText = require('mimetext')
+const path = require('path');
 
 const SCOPES = ['https://mail.google.com/',
 'https://www.googleapis.com/auth/gmail.modify',
 'https://www.googleapis.com/auth/gmail.compose',
 'https://www.googleapis.com/auth/gmail.send',
 'https://www.googleapis.com/auth/userinfo.email'];
-
+const CLIENT_ID = '251641178134-q82rfj4jkcqvlnhgjm2d5lejmd053rv5.apps.googleusercontent.com';
+const SECRET_ID = 'v-NI3vY2_jaUweibIzQ01IK0';
 const TEST_TO = 'aabuhash@stanford.edu';
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
@@ -22,14 +20,11 @@ const oAuth2Client = new google.auth.OAuth2(
 
 // console.log(oAuth2Client);
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
-// create a GET route
-// app.get('/express_backend', (req, res) => {
-//   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-// });
 
 app.get('/oauth2callback', (req, res) => {
   let code = req.query.code;
@@ -96,16 +91,11 @@ app.get('/get_auth_link', (req, res) => {
   res.send({ authUrl: authUrl });
 });
 
-// /**
-//  * Create an OAuth2 client with the given credentials, and then execute the
-//  * given callback function.
-//  * @param {Object} credentials The authorization client credentials.
-//  * @param {function} callback The callback to call with the authorized client.
-//  */
-// function authorize(credentials) {
-//   let authUrl = getNewToken(oAuth2Client);
-//   return authUrl;
-// }
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 /**
  * Get and store new token after prompting for user authorization, and then
@@ -119,27 +109,4 @@ function getNewToken() {
     scope: SCOPES,
   });
   return authUrl;
-}
-
-/**
- * Lists the labels in the user's account.
- *
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
-function listLabels(auth) {
-  const gmail = google.gmail({version: 'v1', auth});
-  gmail.users.labels.list({
-    userId: 'me',
-  }, (err, res) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const labels = res.data.labels;
-    if (labels.length) {
-      console.log('Labels:');
-      labels.forEach((label) => {
-        console.log(`- ${label.name}`);
-      });
-    } else {
-      console.log('No labels found.');
-    }
-  });
 }
