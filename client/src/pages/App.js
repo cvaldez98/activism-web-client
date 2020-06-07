@@ -19,7 +19,8 @@ let goToAuth = async () => {
   window.open(body.authUrl)
 };
 
-function App() {
+function App(props) {
+  console.log(props.location);
   return (
     <Layout className="layout" style={{ opacity:'0.8'}}>
       <meta></meta>

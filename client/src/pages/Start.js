@@ -4,22 +4,35 @@ import '../SampleEmail'
 import { Layout, Menu, Button, Typography } from 'antd';
 import Credits from '../Credits';
 import SampleEmail from '../SampleEmail';
+import * as QueryString from "query-string";
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography
 
-let goToAuth = async () => {
-  const response = await fetch('/get_auth_link');
-  const body = await response.json();
+// Example POST method implementation:
+async function postData(url = '', data = {}) {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
 
-  console.log(body);
-  if (response.status !== 200) {
-    throw Error(body.message) 
-  }
-  window.open(body.authUrl)
-};
-
-function App() {
+function App(props) {
+  //EXAMPLE REQUEST
+  // postData('/send_emails', { code: 'suuuuuuuuuuuup', subject: 'subject', states:['California'], scopes: scopes })
+  // .then(data => {
+  //   console.log(data); // JSON data parsed by `response.json()` call
+  // });
+  const params = QueryString.parse(props.location.search);
+  console.log(params);
+  const code = params.code;
+  const scopes = params.scope;
   return (
     <Layout className="layout" style={{ opacity:'0.8'}}>
       <meta></meta>
@@ -50,7 +63,7 @@ function App() {
               <li>Share with others</li>
               <li>Keep reporting abusive officers and <u>demanding they be fired and charged, not just 'investigated'</u></li>
             </ol>
-            <Button onClick={() => goToAuth()} style={{ marginTop: '20px' }}type='primary' size='large' block> Let's get started </Button>
+            <Button style={{ marginTop: '20px' }}type='primary' size='large' block> Let's get started </Button>
       </Content>
       <Sider width='700' style={{ textAlign: 'center', padding: '25px 50px' }}>
         <SampleEmail></SampleEmail>

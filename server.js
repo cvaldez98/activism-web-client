@@ -21,16 +21,37 @@ const oAuth2Client = new google.auth.OAuth2(
 
 // console.log(oAuth2Client);
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.get('/oauth2callback', (req, res) => {
-  let code = req.query.code;
-  let scope = req.query.scope;
+app.post('/send_emails', (req, res) => {
+  let code = req.body.code;
+  let subject = req.body.subject;
+  let states = req.body.states;
+  let scope = req.body.scope;
 
+  if (!code) {
+    res.statusCode(400);
+    res.send("Google Auth Code not found")
+  }
+
+  if (!subject) {
+    res.statusCode(400);
+    res.send("Google Auth Code not found")
+  }
+
+  if (!states) {
+    states = ['all'];
+  }
+
+  res.send(code);
   oAuth2Client.getToken(code, (err, token) => {
     if (err) return console.error('Error retrieving access token', err);
     // oAuth2Client.setCredentials(token);

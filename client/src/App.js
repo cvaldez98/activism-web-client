@@ -15,8 +15,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/start">
-            <Start />
+          <Route path="/start" component={Start}>
           </Route>
           <Route path="/">
             <Home />
