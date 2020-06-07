@@ -28,13 +28,6 @@ p
   color:white
 }
 
-span
-		{
-			display: inline-block;
-			width: 75px;
-			border-bottom: 2px solid #FFF;
-		}
-
 #container
 		{
 			width: 100%;
