@@ -10,8 +10,7 @@ const SCOPES = ['https://mail.google.com/',
 'https://www.googleapis.com/auth/gmail.compose',
 'https://www.googleapis.com/auth/gmail.send',
 'https://www.googleapis.com/auth/userinfo.email'];
-const CLIENT_ID = '251641178134-q82rfj4jkcqvlnhgjm2d5lejmd053rv5.apps.googleusercontent.com';
-const SECRET_ID = 'v-NI3vY2_jaUweibIzQ01IK0';
+
 const TEST_TO = 'aabuhash@stanford.edu';
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
