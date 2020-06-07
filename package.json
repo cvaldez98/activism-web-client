@@ -1,0 +1,22 @@
+{
+  "name": "activism-web-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "googleapis": "^39.2.0",
+    "js-base64": "^2.5.2",
+    "mimetext": "^0.2.1",
+    "nodemailer": "^6.4.8", 
+    "react-router-dom": "5.2.0"
+  }
+}
