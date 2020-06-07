@@ -4,13 +4,15 @@ const port = process.env.PORT || 5000;
 const {google} = require('googleapis');
 const axios = require("axios");
 const path = require('path');
+const { gen_body } = require('./message');
 require('dotenv').config()
 
 const SCOPES = ['https://mail.google.com/',
 'https://www.googleapis.com/auth/gmail.modify',
 'https://www.googleapis.com/auth/gmail.compose',
 'https://www.googleapis.com/auth/gmail.send',
-'https://www.googleapis.com/auth/userinfo.email'];
+'https://www.googleapis.com/auth/userinfo.email',
+'https://www.googleapis.com/auth/userinfo.profile'];
 
 
 const TEST_TO = 'aabuhash@stanford.edu';
@@ -40,40 +42,39 @@ app.post('/send_emails', (req, res) => {
   if (!code) {
     res.statusCode(400);
     res.send("Google Auth Code not found")
+    return;
   }
 
   if (!subject) {
     res.statusCode(400);
     res.send("Google Auth Code not found")
+    return;
   }
 
   if (!states) {
     states = ['all'];
   }
 
-  res.send(code);
   oAuth2Client.getToken(code, (err, token) => {
     if (err) return console.error('Error retrieving access token', err);
     // oAuth2Client.setCredentials(token);
-    console.log(token);
-    axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${token.access_token}`).then((user) => {
+    axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${token.access_token}`).then((user) => {
       console.log(user.data);
     
       // You can use UTF-8 encoding for the subject using the method below.
       // You can also just use a plain string if you don't need anything fancy.
       const gmail = google.gmail('v1');
 
-      const subject = '🤘 Hello Abdallah and World 🤘';
       const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;
+      const body = gen_body(user.data.name, 'Abdallah Abs');
       const messageParts = [
-        `From: Abdallah AbuHashem <${user.data.email}>`,
+        `From: ${user.data.name} <${user.data.email}>`,
         'To: Abdallah AbuHashem <aabuhash@stanford.edu>',
         'Content-Type: text/html; charset=utf-8',
         'MIME-Version: 1.0',
         `Subject: ${utf8Subject}`,
         '',
-        'This is a message just to say hello.',
-        'So... <b>Hello!</b>  🤘❤️😎',
+        body.replace(/\n/g, '<br>')
       ];
       const message = messageParts.join('\n');
 
@@ -96,11 +97,9 @@ app.post('/send_emails', (req, res) => {
         })
       })
       .then(re => {
-        console.log(re);
         res.send('sup')
       })
       .catch(err => {
-        console.log(err);
         res.send('sup')
       });
     })

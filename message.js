@@ -12,8 +12,8 @@ function gen_subject(){
 }
 
 // Randomly generates the body of the email, follows structure of template and swaps out select words/phrases
-function gen_body(src_name, dst_name, location){
-    return `${gen_greeting(dst_name)}\t${gen_intro(location)}\n\t${gen_curiosity()}\n\t${gen_conclusion(src_name)}`;
+function gen_body(src_name, dst_name){
+    return `${gen_greeting(dst_name)}\t${gen_intro()}\n\t${gen_curiosity()}\n\t${gen_conclusion(src_name)}`;
 }
 
 // Generates the greeting to the recipient of the email
@@ -29,7 +29,7 @@ function attach_greeting(person, body){
 }
 
 //Generates the first sentence of the email.
-function gen_intro(location){
+function gen_intro(){
     let mess = ["in shambles", "in ruins", "a disaster", "a mess"];
     let nominer = ["As a concerned US resident,", "I am a resident of the United States and", "As a concerned American,"];
     let contact = ["getting in touch", "reaching out to you", "contacting you", "sending you this message"];
@@ -165,3 +165,5 @@ function gen_closing(name) {
     return `\n${c[Math.floor(Math.random()*c.length)]},\n${name}`;
 }
 console.log(gen_body("a","a",'a'))
+
+module.exports = { gen_body }
