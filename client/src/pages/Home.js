@@ -4,6 +4,7 @@ import '../SampleEmail'
 import { Layout, Menu, Button, Typography } from 'antd';
 import Credits from '../Credits';
 import SampleEmail from '../SampleEmail';
+import 'antd/dist/antd.css';
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography
