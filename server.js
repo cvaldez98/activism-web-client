@@ -4,6 +4,7 @@ const port = process.env.PORT || 5000;
 const {google} = require('googleapis');
 const axios = require("axios");
 const path = require('path');
+require('dotenv').config()
 
 const SCOPES = ['https://mail.google.com/',
 'https://www.googleapis.com/auth/gmail.modify',
@@ -11,11 +12,12 @@ const SCOPES = ['https://mail.google.com/',
 'https://www.googleapis.com/auth/gmail.send',
 'https://www.googleapis.com/auth/userinfo.email'];
 
+
 const TEST_TO = 'aabuhash@stanford.edu';
 const oAuth2Client = new google.auth.OAuth2(
-  CLIENT_ID,
-  SECRET_ID,
-  'http://localhost:3000/start');
+  process.env.CLIENT_ID,
+  process.env.SECRET_ID,
+  process.env.REDIRECT_URI);
 
 // console.log(oAuth2Client);
 
