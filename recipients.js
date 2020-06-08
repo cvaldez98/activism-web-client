@@ -702,4 +702,4 @@ function get_cities(state){
 
 console.log(get_all());
 
-module.exports = { get_all, get_state, get_states }
+module.exports = { get_all, get_state, get_states };

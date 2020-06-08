@@ -2,12 +2,12 @@ import React from 'react';
 import { Layout, Menu, Button, Typography } from 'antd';
 import SampleEmail from './SampleEmail';
 import { PageHeader, Input, Checkbox, Space } from 'antd';
-
+var recipients = require('./recipients')
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography
 const CheckboxGroup = Checkbox.Group;
-const plainOptions = ['Texas', 'California', 'New York'];
+const plainOptions = recipients.get_states();
 
 // Example POST method implementation:
 async function postData(url = '', data = {}) {
@@ -64,7 +64,6 @@ class Form extends React.Component {
         </Layout>
         <Space align='center'>
         <div className="site-checkbox-all-wrapper">
-
           <Checkbox
             indeterminate={this.state.indeterminate}
             onChange={this.onCheckAllChange}

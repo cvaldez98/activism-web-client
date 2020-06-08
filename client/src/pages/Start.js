@@ -12,11 +12,6 @@ const { Title } = Typography
 // Example POST method implementation:
 
 function App(props) {
-  //EXAMPLE REQUEST
-  // postData('/send_emails', { code: 'suuuuuuuuuuuup', subject: 'subject', states:['California'], scopes: scopes })
-  // .then(data => {
-  //   console.log(data); // JSON data parsed by `response.json()` call
-  // });
   const params = QueryString.parse(props.location.search);
   console.log(params);
   const code = params.code;
