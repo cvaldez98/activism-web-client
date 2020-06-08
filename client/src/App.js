@@ -3,7 +3,7 @@ import './Credits'
 import './SampleEmail'
 import Home from './pages/Home';
 import Start from './pages/Start';
-
+import ThankYou from './pages/ThankYou'
 import {
   BrowserRouter as Router,
   Switch,
@@ -20,6 +20,10 @@ function App() {
           <Route path="/">
             <Home />
           </Route>
+          <Route path="/thanks" component={ThankYou}>
+            <ThankYou></ThankYou>
+          </Route>
+
         </Switch>
       </div>
     </Router>
