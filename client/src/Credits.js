@@ -13,7 +13,7 @@ const data = [
 function Credits() {
     return (
         <div className="site-card-wrapper">
-        <Row gutter={16}>
+        <Row gutter={16} style={{marginBottom: 16}}>
           <Col span={8}>
             <Card title="Alan Ton" bordered={false}>
                 Links
