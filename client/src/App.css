@@ -71,3 +71,8 @@ body {
   padding: 16px;
   background-color: #001529;
 }
+
+.footer {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}

@@ -62,7 +62,7 @@ function App(props) {
           </div>
         </div>
         <div className="footer">
-          <Title level={3} id='about' style={{ padding: '25px 0px 25px'}}> Big thanks to those who are helping make this possible.</Title>
+          <Title level={2} id='about'> Big thanks to those who are helping make this possible.</Title>
           <Credits></Credits>
         </div>
      </div>
