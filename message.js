@@ -166,4 +166,4 @@ function gen_closing(name) {
 }
 console.log(gen_body("a","a",'a'))
 
-module.exports = { gen_body }
+module.exports = { gen_body, gen_subject }

@@ -20,7 +20,6 @@ async function postData(url = '', data = {}) {
       },
       body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
-    console.log('done')
     return response.json(); // parses JSON response into native JavaScript objects
   }
 
@@ -28,7 +27,7 @@ class Form extends React.Component {
     state = {
         checkedList: [],
         indeterminate: true,
-        checkAll: false,
+        checkAll: true,
         subject: ''
     }
 
@@ -37,7 +36,6 @@ class Form extends React.Component {
             checkedList,
             indeterminate: !!checkedList.length && checkedList.length < plainOptions.length,
             checkAll: checkedList.length === plainOptions.length,
-            subject: ''
         })
     }
 
@@ -70,8 +68,7 @@ class Form extends React.Component {
           <Checkbox
             indeterminate={this.state.indeterminate}
             onChange={this.onCheckAllChange}
-            checked={this.state.checkAll}
-          >
+            checked={this.state.checkAll}>
             Check all
           </Checkbox>
         </div>
