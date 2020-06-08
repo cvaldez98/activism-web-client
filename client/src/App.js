@@ -17,13 +17,11 @@ function App() {
         <Switch>
           <Route path="/start" component={Start}>
           </Route>
+          <Route path="/thanks" component={ThankYou}>
+          </Route>
           <Route path="/">
             <Home />
           </Route>
-          <Route path="/thanks" component={ThankYou}>
-            <ThankYou></ThankYou>
-          </Route>
-
         </Switch>
       </div>
     </Router>
