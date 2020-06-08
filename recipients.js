@@ -689,7 +689,7 @@ function get_city(state, county){
 }
 
 function get_states(){
-    let lst = ["Select All"];
+    let lst = [];
     lst = lst.concat(Object.keys(mailing_list));
     return lst;
 }
