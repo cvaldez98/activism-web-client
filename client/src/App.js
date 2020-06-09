@@ -3,7 +3,10 @@ import './Credits'
 import './SampleEmail'
 import Home from './pages/Home';
 import Start from './pages/Start';
-import ThankYou from './pages/ThankYou'
+import ThankYou from './pages/ThankYou';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +21,10 @@ function App() {
           <Route path="/start" component={Start}>
           </Route>
           <Route path="/thanks" component={ThankYou}>
+          </Route>
+          <Route path="/privacy-policy" component={PrivacyPolicy}>
+          </Route>
+          <Route path="/terms-service" component={TermsOfService}>
           </Route>
           <Route path="/">
             <Home />
