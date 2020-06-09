@@ -174,3 +174,8 @@ body {
   border-bottom-color: white;
   color: white;
 }
+
+#icon {
+  font-size: xx-large;
+  padding-right: 2%;
+}
