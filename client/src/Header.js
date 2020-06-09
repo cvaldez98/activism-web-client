@@ -3,7 +3,7 @@ import { Layout, PageHeader } from 'antd'
 
 function StartHeader() {
     return (
-        <Layout style={{ opacity:'0.8'}}>
+        <Layout>
             <PageHeader
                 className="site-page-header"
                 onBack={() => null}

@@ -28,68 +28,69 @@ async function postData(url = '', data = {}) {
 
 class Form extends React.Component {
     state = {
-        checkedList: [],
+        checkedList: [...plainOptions],
+        officials: [...recipients.get_all()],
         indeterminate: true,
         checkAll: true,
         subject: ''
     }
 
-    onChange = checkedList => {
-        this.setState({
-            checkedList,
-            indeterminate: !!checkedList.length && checkedList.length < plainOptions.length,
-            checkAll: checkedList.length === plainOptions.length,
-        })
+    changeSelect = async (st) => {
+      console.log(st);
+      let idx = this.state.checkedList.indexOf(st);
+      if (idx === -1) {
+        await this.setState({checkedList: [...this.state.checkedList, st]});
+      } else {
+        let list = this.state.checkedList;
+        list.splice(idx,1);
+        await this.setState({checkedList: [...list]});
+      }
+
+      let recv = [];
+      for (let s of this.state.checkedList) {
+        recv = recv.concat(recipients.get_state(s));
+      }
+      this.setState({officials: recv});
     }
-
-    onSubmit = postData;
-
-    onHandleSubject = e => {
-        this.state.subject = e.target.value
-    }
-
-    onCheckAllChange = e => {
-        this.setState({
-          checkedList: e.target.checked ? plainOptions : [],
-          indeterminate: false,
-          checkAll: e.target.checked,
-        });
-      };
 
     render() {
         return (
-        <div className="container"> 
-            <StartHeader></StartHeader>
-            
-
-            <Divider orientation="left" plain>
-              Check the states you want to reach out to. 
-            </Divider>
-            <Checkbox
-                indeterminate={this.state.indeterminate}
-                onChange={this.onCheckAllChange}
-                checked={this.state.checkAll}>
-                Check all
-            </Checkbox>
-            <CheckboxGroup
-            options={plainOptions}
-            onChange={this.onChange}
-            style={{padding: '0 50px 0 50px'}}/>    
-            <Divider orientation="left" plain>
-              Add a subject line.
-            </Divider>    
-                <Input 
-                    placeholder='' 
-                    width='100px'
-                    onChange={this.onHandleSubject}
-                    value={this.state.value}>
-                </Input>
-              <Divider orientation='left' plain>
-                Make your voice heard.
-            </Divider>
-              <Button onClick= {() => {postData('/send_emails', { code: this.props.code, subject: this.state.subject, states: this.state.checkedList, scopes: this.props.scopes}).then( data => console.log(data))}} className="mock-block">
-                      Send out emails
-              </Button>
+        <div className="container">
+          <Content id='home' style={{ padding: '25px 50px', backgroundColor: '#003261'}}>
+            <Title style={{ color: 'pink'}}>Welcome!</Title>
+            <Title level={4} style={{ color: 'white'}}>This tool helps you draft emails to send to officials in the US. You have 2 required actions to send emails</Title>
+            <ol>
+              <li>Choose states from below: By choosing the states from the list below, we select all officials we know of and prepare their mailing addresses. You can review the list of emails in the other grayed out list below.</li>
+              <li>Once you hit "Next" button below, we will generate drafts for you on the right. You can review the reciepients, subject and content of the email on the right before hitting send.</li>
+            </ol>
+            <Divider />
+            <div className="side-lists">
+              <div className="select-states">
+                <div className="label">To start, please select the states to which you want to email officials:</div>
+                <div style={{height: 200, overflowY: 'scroll'}}>
+                  {plainOptions.map((state) =>
+                    <div onClick={() => this.changeSelect(state)} className="state-select" style={{fontWeight: this.state.checkedList.indexOf(state) === -1 ? 'normal' : 'bold'}}>
+                      <div>{state}</div>
+                      {this.state.checkedList.indexOf(state) !== -1 && <div>✓</div>}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="show-reps">
+                <div className="label">Receipients of the selected states:</div>
+                <div style={{height: 220, overflowY: 'scroll'}}>
+                  {this.state.officials.map((off) =>
+                    <div className="state-select" style={{backgroundColor: '#CCCCCC'}}>
+                      <div>{off[0]+" <" + off[2] + ">"}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="next-container">
+              <Button onClick={() => this.props.togglePreview(this.state.officials)}>Generate Drafts</Button>
+            </div>
+          </Content>
         </div>
         );
     }   

@@ -5,6 +5,7 @@ const {google} = require('googleapis');
 const axios = require("axios");
 const path = require('path');
 const { gen_body } = require('./message');
+const { get_all } = require('./recipients');
 require('dotenv').config()
 
 const SCOPES = ['https://mail.google.com/',
@@ -33,75 +34,79 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
+
 app.post('/send_emails', (req, res) => {
   let code = req.body.code;
-  let subject = req.body.subject;
-  let states = req.body.states;
+  let emails = req.body.emails;
   let scope = req.body.scope;
-
+  // console.log(req.body);
   if (!code) {
-    res.statusCode(400);
+    res.status(400);
     res.send("Google Auth Code not found")
     return;
   }
 
-  if (!subject) {
-    res.statusCode(400);
-    res.send("Google Auth Code not found")
+  if (!emails) {
+    res.status(400);
+    res.send("Emails not found")
     return;
   }
 
-  if (!states) {
-    states = ['all'];
+  let all = get_all();
+  let all_dict = {};
+  for (let rep of all) {
+    all_dict[rep[2]] = rep;
   }
 
   oAuth2Client.getToken(code, (err, token) => {
     if (err) return console.error('Error retrieving access token', err);
     // oAuth2Client.setCredentials(token);
     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${token.access_token}`).then((user) => {
-      console.log(user.data);
-    
-      // You can use UTF-8 encoding for the subject using the method below.
-      // You can also just use a plain string if you don't need anything fancy.
-      const gmail = google.gmail('v1');
 
-      const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;
-      const body = gen_body(user.data.name, 'Abdallah Abs');
-      const messageParts = [
-        `From: ${user.data.name} <${user.data.email}>`,
-        'To: Abdallah AbuHashem <aabuhash@stanford.edu>',
-        'Content-Type: text/html; charset=utf-8',
-        'MIME-Version: 1.0',
-        `Subject: ${utf8Subject}`,
-        '',
-        body.replace(/\n/g, '<br>')
-      ];
-      const message = messageParts.join('\n');
+      for (let e of emails) {
+        let recvArr = e.recipients.split(",");
+        const utf8Subject = `=?utf-8?B?${Buffer.from(e.subject).toString('base64')}?=`;
+        for (let rec of recvArr) {
+          let recName = "";
+          if (rec in all_dict) {
+            recName = all_dict[rec];
+          }
+          const body = e.body.replace("{RECIPIENT}", recName).replace("{YOUR NAME}", user.data.name);
+          let to = `To: <${rec}>`;
+          if (rec in all_dict) {
+            to = `To: ${recName} <${rec}>`;
+          }
+          const messageParts = [
+            `From: ${user.data.name} <${user.data.email}>`,
+            to,
+            'Content-Type: text/html; charset=utf-8',
+            'MIME-Version: 1.0',
+            `Subject: ${utf8Subject}`,
+            '',
+            body.replace(/\n/g, '<br>')
+          ];
+          const message = messageParts.join('\n');
+          // The body needs to be base64url encoded.
+          const encodedMessage = Buffer.from(message)
+          .toString('base64')
+          .replace(/\+/g, '-')
+          .replace(/\//g, '_')
+          .replace(/=+$/, '');
 
-      // The body needs to be base64url encoded.
-      const encodedMessage = Buffer.from(message)
-        .toString('base64')
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=+$/, '');
-
-      axios({
-        method: 'post',
-        url: `https://www.googleapis.com/gmail/v1/users/${user.data.id}/messages/send`,
-        headers: {
-          'Authorization': 'Bearer ' + token.access_token,
-          'Content-Type': 'application/json'
-        },
-        data: JSON.stringify({
-          'raw': encodedMessage
-        })
-      })
-      .then(re => {
-        res.send('sup')
-      })
-      .catch(err => {
-        res.send('sup')
-      });
+          axios({
+            method: 'post',
+            url: `https://www.googleapis.com/gmail/v1/users/${user.data.id}/messages/send`,
+            headers: {
+              'Authorization': 'Bearer ' + token.access_token,
+              'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({
+              'raw': encodedMessage
+            })
+          });
+        }
+      }
+      res.send("ok");
     })
   });
 });

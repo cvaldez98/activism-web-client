@@ -51,6 +51,7 @@ body {
 .content {
   display: flex;
   flex-direction: column;
+  background-color: #003261;
 }
 
 .main {
@@ -77,4 +78,99 @@ body {
 .footer {
   margin-top: 32px;
   margin-bottom: 32px;
+}
+
+.side-lists {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.select-states {
+  flex: 2;
+  margin-right: 32px;
+}
+
+.show-reps {
+  flex: 3;
+}
+
+.label {
+  color: white;
+  font-size: 20px;
+}
+
+.state-select {
+  display: flex;
+  color: black;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.select-states:hover {
+  cursor: pointer;
+}
+
+.next-container {
+  display: flex;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  height: 85vh;
+}
+
+.preview-header {
+  display: flex;
+  background-color: #1890ff;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 16px 16px 16px;
+}
+
+.email-to {
+  display: flex;
+  flex-direction: row;
+  padding: 16px 16px 16px 16px;
+}
+
+.email-subject {
+  display: flex;
+  flex-direction: row;
+  padding: 16px 16px 16px 16px;
+}
+
+.email-body {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 16px 16px 16px 16px;
+  overflow-y: scroll;
+}
+
+.email-label {
+  font-size: 16px;
+  color: white;
+  margin-right: 16px;
+  white-space:pre-wrap;
+}
+
+.text-input {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  border-bottom-style: solid;
+  border-bottom-color: white;
+  color: white;
 }
