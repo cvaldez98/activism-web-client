@@ -1,9 +1,7 @@
 import React from 'react';
 import '../Credits'
 import '../SampleEmail'
-import { Layout, Menu, Button, Typography, PageHeader } from 'antd';
-import Credits from '../Credits';
-import SampleEmail from '../SampleEmail';
+import { Layout, Typography, PageHeader } from 'antd';
 import 'antd/dist/antd.css';
 import '../App.css';
 

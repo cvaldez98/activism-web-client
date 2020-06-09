@@ -7,7 +7,7 @@ import SampleEmail from '../SampleEmail';
 import 'antd/dist/antd.css';
 import '../App.css';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 const { Title } = Typography
 
 let goToAuth = async () => {
@@ -30,7 +30,7 @@ function App(props) {
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
           <Menu.Item key="1"><a href='#home'>Home</a></Menu.Item>
           <Menu.Item key="2"> <a href='#about'></a>About</Menu.Item>
-          <Menu.Item key="3"> <a href='https://how-can-i-help.github.io/' target="_blank"> Resources </a> </Menu.Item>
+          <Menu.Item key="3"> <a href='https://how-can-i-help.github.io/' target="_blank" rel="noopener noreferrer"> Resources </a> </Menu.Item>
           <Menu.Item key="4"> <a href="https://forms.gle/Duy52iF4i5kvyb9K8">Submit a representative</a></Menu.Item>
           <Menu.Item key="5"> <a onClick={() => window.open('/privacy-policy', '_self')}>Privacy Policy</a></Menu.Item>
           <Menu.Item key="6"> <a onClick={() => window.open('/terms-service', '_self')}>Terms of Service</a></Menu.Item>

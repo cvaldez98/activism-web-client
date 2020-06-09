@@ -8,20 +8,20 @@ function Credits() {
         <Row gutter={16} style={{marginBottom: 16}}>
           <Col span={8}>
             <Card title="Alan Ton" bordered={false}>
-                <a href='https://github.com/alandgton/' target='_blank'><GithubOutlined id='icon'/></a>
-                <a href='https://www.linkedin.com/in/alanton/' target='_blank'><LinkedinOutlined id='icon'/></a>
+                <a href='https://github.com/alandgton/' target='_blank' rel="noopener noreferrer"><GithubOutlined id='icon'/></a>
+                <a href='https://www.linkedin.com/in/alanton/' target='_blank' rel="noopener noreferrer"><LinkedinOutlined id='icon'/></a>
               </Card>
           </Col>
           <Col span={8}>
             <Card title="Abdallah Abuhashem" bordered={false}>
-                <a href='https://github.com/AbdallahAbuHashem' target='_blank'><GithubOutlined id='icon'/></a>
-                <a href='https://www.linkedin.com/in/aabuhash/' target='_blank'><LinkedinOutlined id='icon'/></a>
+                <a href='https://github.com/AbdallahAbuHashem' target='_blank' rel="noopener noreferrer"><GithubOutlined id='icon'/></a>
+                <a href='https://www.linkedin.com/in/aabuhash/' target='_blank' rel="noopener noreferrer"><LinkedinOutlined id='icon'/></a>
             </Card>
           </Col>
           <Col span={8}>
             <Card title="Carlos Valdez" bordered={false}>
-                <a href='https://github.com/cvaldez98' target='_blank'><GithubOutlined id='icon'/></a>
-                <a href='https://www.linkedin.com/in/carlosvr98/' target='_blank'><LinkedinOutlined id='icon'/></a>
+                <a href='https://github.com/cvaldez98' target='_blank' rel="noopener noreferrer"><GithubOutlined id='icon'/></a>
+                <a href='https://www.linkedin.com/in/carlosvr98/' target='_blank' rel="noopener noreferrer"><LinkedinOutlined id='icon'/></a>
             </Card>
           </Col>
         </Row>
@@ -29,15 +29,15 @@ function Credits() {
           <Col span={8}>
             <Card title="Uma Krishnan" bordered={false}>
               <div>
-                <a href='' target='_blank'><GithubOutlined id='icon'/></a>
-                <a href='https://www.linkedin.com/in/uma-krishnan/' target='_blank'><LinkedinOutlined id='icon'/></a>
+                <a href='' target='_blank' rel="noopener noreferrer"><GithubOutlined id='icon'/></a>
+                <a href='https://www.linkedin.com/in/uma-krishnan/' target='_blank' rel="noopener noreferrer"><LinkedinOutlined id='icon'/></a>
               </div>
             </Card>
           </Col>
           <Col span={8}>
             <Card title="Nicolas Renteria" bordered={false}>
-                <a href='https://github.com/nrenteria' target='_blank'><GithubOutlined id='icon'/></a>
-                <a href='https://www.linkedin.com/in/nicolasrenteria/' target='_blank'><LinkedinOutlined id='icon'/></a>
+                <a href='https://github.com/nrenteria' target='_blank' rel="noopener noreferrer"><GithubOutlined id='icon'/></a>
+                <a href='https://www.linkedin.com/in/nicolasrenteria/' target='_blank' rel="noopener noreferrer"><LinkedinOutlined id='icon'/></a>
             </Card>
           </Col>
           {/* <Col span={8}>

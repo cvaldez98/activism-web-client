@@ -1,16 +1,14 @@
 import React from 'react';
-import { Layout, Menu, Button, Typography, Divider } from 'antd';
-import { PageHeader, Input, Checkbox, Space, Steps } from 'antd';
-import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '@ant-design/icons';
+import { Layout, Button, Typography, Divider } from 'antd';
+import { Checkbox } from 'antd';
 import StartHeader from './Header'
 
 var recipients = require('./recipients')
 
 const { Header, Footer, Sider, Content } = Layout;
-const { Title } = Typography
+const { Title, Text } = Typography
 const CheckboxGroup = Checkbox.Group;
 const plainOptions = recipients.get_states();
-const { Text } = Typography;
 
 // Example POST method implementation:
 async function postData(url = '', data = {}) {

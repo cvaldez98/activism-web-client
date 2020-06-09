@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
 import '../Credits'
 import '../SampleEmail'
-import { Layout, Menu, Button, Typography, PageHeader } from 'antd';
-import Credits from '../Credits';
+import { PageHeader } from 'antd';
 import PreviewEmails from '../PreviewEmails';
 import * as QueryString from "query-string";
 import Form from '../form'
-const { Header, Footer, Sider, Content } = Layout;
-const { Title } = Typography
 var messages = require('../message')
 
 // Example POST method implementation:

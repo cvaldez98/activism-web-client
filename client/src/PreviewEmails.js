@@ -1,9 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Button, Typography, Divider } from 'antd';
-import { PageHeader, Input, Checkbox, Space, Steps } from 'antd';
-import { UserOutlined, SolutionOutlined, LoadingOutlined, SmileOutlined } from '@ant-design/icons';
-import StartHeader from './Header'
-import PlaceHolder from './PlaceHolder';
+import { Button, Typography } from 'antd';
 
 const { Title } = Typography
 
