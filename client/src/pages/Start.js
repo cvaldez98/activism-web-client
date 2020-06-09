@@ -5,7 +5,7 @@ import { Layout, Menu, Button, Typography } from 'antd';
 import Credits from '../Credits';
 import SampleEmail from '../SampleEmail';
 import * as QueryString from "query-string";
-import Form from '../Form'
+import Form from '../form'
 const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography
 

@@ -47,9 +47,8 @@ function App(props) {
               <ol>
                 <li>Click the 'Get Started' button.</li>
                 <li>This will ask you to sign in with a Google account of your choice.</li>
-                <li>You will then be redirected to a page where you can <u>select which representatives</u> you wish to send your emails to.
-                  You can select all or select by state for now.</li>
-                <li>Hit send and your emails should start being sent automatically! </li>
+                <li>You will then be redirected to a page where you can <u>select which representatives</u> you wish to send your emails to. You will also be able to specify the subject of your emails.</li>
+                <li>Hit send and your emails should start being sent! </li>
                 <li>Additionally, if you don't see your local representative listed, Find the <u>email addresses</u> of your <u>local police</u> department, local representatives, <u>county</u> representatives, <u>and state</u> representatives and submit them through <a href="https://forms.gle/Duy52iF4i5kvyb9K8">this form.</a></li>
                 <li>Share with others</li>
                 <li>Keep reporting abusive officers and <u>demanding they be fired and charged, not just 'investigated'</u></li>
